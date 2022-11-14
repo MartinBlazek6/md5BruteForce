@@ -104,11 +104,11 @@ public class Controller {
         return sb.toString();
     }
     @GetMapping("/crack")
-    ResponseEntity<String> cracker(@RequestParam String id) {
+    ResponseEntity<String> cracker(@RequestParam String md5) {
 
         System.out.println("lala");
         HttpHeaders headers = null;
-        if (id.length() > 0) {
+        if (md5.length() > 0) {
             try {
                 Controller bc = new Controller();
                 long start;
@@ -116,7 +116,7 @@ public class Controller {
                 String answer;
 
                 start = System.nanoTime();
-                answer = bc.crack(id);
+                answer = bc.crack(md5);
                 end = System.nanoTime();
 
                 System.out.println("Answer: " + answer);
@@ -129,7 +129,7 @@ public class Controller {
         }
 
         return new ResponseEntity<>(
-                "Custom header set", headers, HttpStatus.OK);
+                "Password is in headers", headers, HttpStatus.OK);
     }
 
 
